@@ -19,7 +19,7 @@ const Routes = () => {
           render={({ match }) => <MoviesPage title="Movies Page" />}
           exact
         />
-        <Route path="/movies/:movieId" exact>
+        <Route path="/movies/movieId" exact>
           <MovieDetailsPage title="Movie Details Page" />
         </Route>
         <Route path="/movies/:movieId/cast">

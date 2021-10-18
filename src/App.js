@@ -1,10 +1,9 @@
 import { BrowserRouter as Router } from "react-router-dom";
-
+import "./App.css";
 import Routes from "./Routes";
 import HeaderMenu from "./client/HeaderMenu";
 
 function App() {
-
   return (
     <Router>
       <div className="App">
