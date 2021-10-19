@@ -3,6 +3,7 @@ import PageContainer from "../../shared/containers/PageContainer";
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { getTrendingMovies } from "../../shared/services/posts";
+import styles from "./HomePage.module.scss";
 
 const HomePage = ({ title }) => {
   const [movies, setMovies] = useState([]);
@@ -17,7 +18,6 @@ const HomePage = ({ title }) => {
         setMovies(data.results);
       } catch (error) {
         setError(error);
-        // throw ("error:", { error });
       }
     };
     fetchMovies();
@@ -25,7 +25,10 @@ const HomePage = ({ title }) => {
 
   const moviesList = movies.map(({ id, title }) => (
     <li key={id}>
-      <Link to={{ pathname: `/movies/${id}`, state: { from: location } }}>
+      <Link
+        to={{ pathname: `/movies/${id}`, state: { from: location } }}
+        className={styles.item}
+      >
         {title}
       </Link>
     </li>
@@ -33,7 +36,7 @@ const HomePage = ({ title }) => {
 
   return (
     <PageContainer title={title}>
-      <ul>{moviesList}</ul>
+      <ol className={styles.list}>{moviesList}</ol>
     </PageContainer>
   );
 };

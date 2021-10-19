@@ -26,19 +26,8 @@ export const getCastMovie = (movie_id) => {
   );
 };
 
-// export const getPosts = (_page = 1, _limit = 3) => {
-//   return instance.get("/", createParams({ _limit, _page }));
-// };
-
-// export const searchPosts = (searchText) => {
-//   return instance.get(
-//     "/",
-//     createParams({
-//       q: searchText,
-//     })
-//   );
-// };
-
-// export const getPostById = (id) => {
-//   return instance.get(`/${id}`);
-// };
+export const getReviewsMovie = (movie_id) => {
+  return instance.get(
+    `/movie/${movie_id}/reviews?api_key=${key}&language=en-US`
+  );
+};

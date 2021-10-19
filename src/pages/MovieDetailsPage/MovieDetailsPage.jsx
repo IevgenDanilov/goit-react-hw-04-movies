@@ -1,4 +1,3 @@
-// import { render } from "@testing-library/react";
 import {
   useHistory,
   useParams,
@@ -8,9 +7,9 @@ import {
   Route,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getSingleMovie, getCastMovie } from "../../shared/services/posts";
+import { getSingleMovie } from "../../shared/services/posts";
 import { lazy, Suspense } from "react";
-import styles from "./MovieDetailsPage1.module.scss";
+import styles from "./MovieDetailsPage.module.scss";
 
 const Cast = lazy(() => import("../MovieDetailsPage/Cast"));
 const Reviews = lazy(() => import("../MovieDetailsPage/Reviews"));
@@ -20,9 +19,6 @@ const MovieDetailsPage = () => {
   const params = useParams();
   const match = useRouteMatch();
   const location = useLocation();
-  // console.log(history);
-  // console.log(params.movieId);
-  // console.log(match);
   const [movie, setMovie] = useState();
   const [error, setError] = useState();
   const [cast, setCast] = useState();
@@ -30,7 +26,6 @@ const MovieDetailsPage = () => {
     const fetchMovie = async () => {
       try {
         const { data } = await getSingleMovie(params.movieId);
-        console.log(data);
         setMovie(data);
       } catch (error) {
         setError(error);
@@ -41,12 +36,12 @@ const MovieDetailsPage = () => {
   const imagePath = "https://image.tmdb.org/t/p/w500";
   return (
     <>
-      <a href="" className={styles.clearLink}>
+      <button type="button" className={styles.btn}>
         ◀ Go back
-      </a>
+      </button>
       <section className={styles.mainSection}>
         <img
-          src={`${imagePath}${movie?.backdrop_path}`}
+          src={movie && `${imagePath}${movie?.backdrop_path}`}
           alt=""
           className={styles.mainImage}
         />
@@ -58,8 +53,8 @@ const MovieDetailsPage = () => {
           <h4>Genres</h4>
 
           <p>
-            {movie?.genres.map(({ name }) => (
-              <span>{name} </span>
+            {movie?.genres.map(({ id, name }) => (
+              <span key={id}>{name} </span>
             ))}
           </p>
         </div>
@@ -80,7 +75,13 @@ const MovieDetailsPage = () => {
             </Link>
           </li>
           <li>
-            <Link to="" className={styles.clearLink}>
+            <Link
+              to={{
+                pathname: `/movies/${params.movieId}/reviews`,
+                state: { from: location },
+              }}
+              className={styles.clearLink}
+            >
               Reviews
             </Link>
           </li>
@@ -92,7 +93,7 @@ const MovieDetailsPage = () => {
           <Cast title="Cast" id={params.movieId} />
         </Route>
         <Route path="/movies/:movieId/reviews" exact>
-          <Reviews title="Reviews" />
+          <Reviews title="Reviews" id={params.movieId} />
         </Route>
       </Suspense>
     </>

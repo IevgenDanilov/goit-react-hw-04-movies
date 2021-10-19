@@ -10,7 +10,7 @@ const Routes = () => {
     <Switch>
       <Suspense fallback={<p>Loading...</p>}>
         <Route path="/" exact>
-          <HomePage title="Home Page" />
+          <HomePage title="Trending today" />
         </Route>
         <Route
           path="/movies"

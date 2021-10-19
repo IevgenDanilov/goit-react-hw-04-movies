@@ -3,7 +3,6 @@ import { getCastMovie } from "../../../shared/services/posts";
 import styles from "./Cast.module.scss";
 
 const Cast = ({ id }) => {
-  console.log(id);
   const [error, setError] = useState();
   const [cast, setCast] = useState();
 
@@ -11,7 +10,6 @@ const Cast = ({ id }) => {
     const getCast = async () => {
       try {
         const { data } = await getCastMovie(id);
-        console.log(data);
         setCast(data.cast);
       } catch (error) {
         setError(error);
