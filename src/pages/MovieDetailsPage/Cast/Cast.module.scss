@@ -4,12 +4,15 @@
 }
 
 .image {
-  margin: 20px;
-  width: 100px;
+  width: 150px;
 }
 
 .list {
   list-style: none;
   text-decoration: none;
-  line-height: 2;
+  display: flex;
+}
+
+.profile {
+  margin: 20px;
 }
