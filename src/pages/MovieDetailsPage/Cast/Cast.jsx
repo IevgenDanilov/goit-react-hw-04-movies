@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getCastMovie } from "../../../shared/services/posts";
+import { getCastMovie } from "../../../shared/services/api";
 import styles from "./Cast.module.scss";
 
 const Cast = ({ id }) => {

@@ -1,25 +1,27 @@
 import { lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
+import { routes } from "./shared/services/routes";
 
-const HomePage = lazy(() => import("./pages/HomePage"));
-const MoviesPage = lazy(() => import("./pages/MoviesPage"));
-const MovieDetailsPage = lazy(() => import("./pages/MovieDetailsPage"));
+const HomePage = lazy(() => import("./pages/homePage"));
+const MoviesPage = lazy(() => import("./pages/moviesPage"));
+const MovieDetailsPage = lazy(() => import("./pages/movieDetailsPage"));
+const NotFound = lazy(() => import("./shared/components/notFound"));
 
 const Routes = () => {
   return (
     <Switch>
       <Suspense fallback={<p>Loading...</p>}>
-        <Route path="/" exact>
-          <HomePage title="Trending today" />
-        </Route>
         <Route
-          path="/movies"
-          render={({ match }) => <MoviesPage title="Movies Page" />}
+          path={routes.HOME_PAGE}
           exact
+          render={() => <HomePage title="Trending today" />}
         />
-        <Route path="/movies/:movieId">
-          <MovieDetailsPage title="Movie Details Page" />
-        </Route>
+        <Route path={routes.MOVIES_PAGE} exact render={() => <MoviesPage />} />
+        <Route
+          path={routes.MOVIE_DATAILS_PAGE}
+          render={() => <MovieDetailsPage />}
+        />
+        <Route path={routes.NOT_FOUND} component={NotFound} />
       </Suspense>
     </Switch>
   );

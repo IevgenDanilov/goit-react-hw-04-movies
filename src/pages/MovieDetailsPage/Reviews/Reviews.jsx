@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getReviewsMovie } from "../../../shared/services/posts";
+import { getReviewsMovie } from "../../../shared/services/api";
 import styles from "./Reviews.module.scss";
 
 const Reviews = ({ id }) => {

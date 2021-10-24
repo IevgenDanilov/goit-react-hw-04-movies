@@ -2,7 +2,7 @@
 import PageContainer from "../../shared/containers/PageContainer";
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { getTrendingMovies } from "../../shared/services/posts";
+import { getTrendingMovies } from "../../shared/services/api";
 import styles from "./HomePage.module.scss";
 
 const HomePage = ({ title }) => {
