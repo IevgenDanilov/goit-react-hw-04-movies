@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
+import Loader from "react-loader-spinner";
 import { routes } from "./shared/services/routes";
 
 const HomePage = lazy(() => import("./pages/homePage"));
@@ -10,7 +11,18 @@ const NotFound = lazy(() => import("./shared/components/notFound"));
 const Routes = () => {
   return (
     <Switch>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense
+        fallback={
+          <Loader
+            className="Loader"
+            type="TailSpin"
+            color="#3f51b5"
+            height={50}
+            width={50}
+            timeout={0}
+          />
+        }
+      >
         <Route
           path={routes.HOME_PAGE}
           exact

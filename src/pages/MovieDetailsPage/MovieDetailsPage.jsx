@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { getSingleMovie } from "../../shared/services/api";
 import { lazy, Suspense } from "react";
 import { routes } from "../../shared/services/routes";
+import Loader from "react-loader-spinner";
 import styles from "./MovieDetailsPage.module.scss";
 
 const Cast = lazy(() => import("./cast"));
@@ -98,7 +99,18 @@ const MovieDetailsPage = () => {
         </ul>
       </section>
       <hr />
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense
+        fallback={
+          <Loader
+            className="Loader"
+            type="TailSpin"
+            color="#3f51b5"
+            height={50}
+            width={50}
+            timeout={0}
+          />
+        }
+      >
         <Route
           path={`${routes.MOVIE_DATAILS_PAGE}/cast`}
           exact
