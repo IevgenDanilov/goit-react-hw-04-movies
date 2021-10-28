@@ -1,12 +1,14 @@
+import { routes } from "../../shared/services/routes";
+
 export const items = [
   {
     id: "1",
     name: "Home",
-    href: "/",
+    href: routes.HOME_PAGE,
   },
   {
     id: "2",
     name: "Movies",
-    href: "/movies",
+    href: routes.MOVIES_PAGE,
   },
 ];
